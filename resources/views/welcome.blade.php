@@ -19,8 +19,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ $blog->title }}</h5>
                                 <p class="card-text">{{ $blog->body }}</p>
-                                <a href="#" class="btn btn-info">more
-                                    info!</a>
+                                <a href={{ route('blogs.show', $blog->id) }} class="btn btn-info">more info!</a>
                             </div>
                         </div>
                     </div>

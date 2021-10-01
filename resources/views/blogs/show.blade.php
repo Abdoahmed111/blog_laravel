@@ -12,12 +12,14 @@
                     <p class="card-text">{{ $blog->created_at }}</p>
                 </div>
 
-                <!--Form-->
-                <form action="blog_details.php" method="POST">
-                    <input type="hidden" name="blogId" value="">
-                    <input type="submit" name="delete" value="Delete" class="btn btn-danger">
-                    <a href="" class="btn btn-warning m-2">Update</a>
-                </form>
+                @if (Auth::user()->name === $blog->author)
+                    <!--Form-->
+                    <form action="blog_details.php" method="POST">
+                        <input type="hidden" name="blogId" value="">
+                        <input type="submit" name="delete" value="Delete" class="btn btn-danger">
+                        <a href="" class="btn btn-warning m-2">Update</a>
+                    </form>
+                @endif
             </div>
         </div>
     </section>
