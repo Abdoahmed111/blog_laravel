@@ -13,17 +13,18 @@
         <div class="container">
             <h4 class="text-center">Some Basics Blogs</h4>
             <div class="row">
-                <div class="col-md-3 col-sm-6 col-xs-12 my-2">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Fist Blog</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum error
-                                at ratione numquam tempore provident architecto facere non ad labore.</p>
-                            <a href="#" class="btn btn-info">more
-                                info!</a>
+                @foreach ($blogs as $blog)
+                    <div class="col-md-3 col-sm-6 col-xs-12 my-2">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $blog->title }}</h5>
+                                <p class="card-text">{{ $blog->body }}</p>
+                                <a href="#" class="btn btn-info">more
+                                    info!</a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
