@@ -72,4 +72,46 @@ class BlogController extends Controller
 
         return redirect('/');
     }
+
+    public function edit($id)
+    {
+        $blog = Blog::findOrFail($id);
+        return view('blogs.edit', ['blog' => $blog]);
+    }
+
+    public function update($id)
+    {
+        $title = request('title');
+        $body = request('body');
+        $author = Auth::user()->name;
+
+        if (empty($title) && empty($body)) {
+            return redirect('/blogs/create')->with('error_empty', 'Please Fill this Field!');
+        }
+        if (empty($title)) {
+            return redirect('/blogs/create')->with([
+                'error_title' => 'Please Fill this Field!',
+                'body' => $body,
+            ]);
+        }
+
+        if (empty($body)) {
+            return redirect('/blogs/create')->with([
+                'error_body' => 'Please Fill this Field!',
+                'title' => $title,
+            ]);
+        }
+        $blog = new Blog();
+        $blog->title = $title;
+        $blog->body = $body;
+        $blog->author = $author;
+
+        $blog->where('id', $id)->update([
+            'title' => $blog->title,
+            'body' => $blog->body,
+        ]);
+
+        return redirect('/')->with('message', 'Your blog got updated');
+
+    }
 }

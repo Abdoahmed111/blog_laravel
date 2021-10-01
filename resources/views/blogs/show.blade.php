@@ -18,7 +18,7 @@
                         @csrf
                         @method('DELETE')
                         <input type="submit" value="Delete" class="btn btn-danger">
-                        <a href="" class="btn btn-warning m-2">Update</a>
+                        <a href={{ route('blogs.edit', $blog->id) }} class="btn btn-warning m-2">Update</a>
                     </form>
                 @endif
             </div>
